@@ -1,0 +1,14 @@
+.btn-primary{
+  width: 3rem;
+  height: 3rem;
+  margin: 3px;
+  color: gray;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}

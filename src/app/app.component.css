@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.container{
+  margin:0;
+  padding: 0;
+}
+
+.container-fluid{
+  margin:0;
+  padding: 0;
+}
+
+.btn-primary{
+  width: 3rem;
+  height: 3rem;
+}
+
+.w-35{
+  width:35%;
+}
+
+.section-numberSelected{
+  background: #e2ece9;
+
+}
+
+.summary-section{
+  height:90%;
+}
+
+h2{
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+}
+.btn-secondary{
+  background-color:green;
+  border:green;
+  width:15%;
+  text-align: center;
+}

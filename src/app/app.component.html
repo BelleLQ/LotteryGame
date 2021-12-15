@@ -1,0 +1,19 @@
+<div class="my-5 container-fluid text-center">
+  <app-header></app-header>
+  <div class="row d-flex w-75 mx-auto justify-content-center">
+  <div class="col-4 mx-1">
+      <app-bet-money-list (betAmountToApp)="updateBetAmount($event)" (betIsSelected)="updateBetSelection($event)"></app-bet-money-list>
+      <app-number-selection (noSelected)="updateNoSelected($event)" (allSelected)="updateIsAllSelected($event)" [isbetSelected]="betSelected"></app-number-selection>
+  </div>
+  <div class="container-fluid section-numberSelected col-4 mx-1">
+    <div class="summary-section">
+        <h2>Numbers Selected</h2>
+        <app-number-selected *ngFor="let number of numberSelected" [numberItem]="number"></app-number-selected>
+    </div>
+        <p>Total: $ {{betAmount}}.00</p>
+  </div>
+  </div>
+  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="cleanUp()" [disabled]="!isAllSelected||!betSelected">CLEAR</button>
+  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="checkout()" [disabled]="!isAllSelected||!betSelected">CASH</button>
+
+</div>
