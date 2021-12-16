@@ -1,6 +1,6 @@
 <div class="container-fluid section-numberSelection">
   <h2>Choose your numbers</h2>
   <div class="row d-flex justify-content-center align-items-center p-2">
-  <app-number-selection-item *ngFor="let numberItem of numberItems" [numberItem]="numberItem" class="col-2 p-0" (numbersSelected)="updateNumbers($event)" (allNumberSelected)="updateIsSelected($event)" [clearIsHit]="clear"></app-number-selection-item>
+  <app-number-selection-item *ngFor="let numberItem of numberItems" [numberItem]="numberItem" class="col-2 p-0" [(numbersSelected)]="numberSelected" ></app-number-selection-item>
   </div>
   </div>

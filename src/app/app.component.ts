@@ -1,5 +1,4 @@
-import {Component, QueryList, ViewChildren} from '@angular/core';
-import {NumberSelectionItemComponent} from "./components/number-selection-item/number-selection-item.component";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,34 +7,19 @@ import {NumberSelectionItemComponent} from "./components/number-selection-item/n
 })
 export class AppComponent {
   title = 'lotteryGame';
-  betAmount: number = 0;
-  betSelected:boolean = false;
+  betAmount:number = 0;
   numberSelected:number[]=[];
-  isAllSelected:boolean=false;
-  readyToGo:boolean = false;
 
-  updateBetAmount(bet:number){
-    this.betAmount=bet;
-    console.log(this.betAmount);
-  }
-  updateBetSelection(isSelected:boolean) {
-    this.betSelected = isSelected;
-    console.log(this.betSelected);
-  }
-  updateNoSelected(noSelected:number[]){
-    this.numberSelected=noSelected;
-    console.log(this.numberSelected);
-
-  }
-  updateIsAllSelected(isAllNoSelected:boolean){
-    this.isAllSelected=isAllNoSelected;
-    this.readyToGo=this.betSelected&&this.isAllSelected;
-  }
   checkout=():void=>{
-    if(this.isAllSelected && this.betSelected) window.alert("Going to check out process....")
+    console.log(this.betAmount);
+    if(this.numberSelected.length==5 && this.betAmount>0) window.alert("Going to check out process....")
   }
   cleanUp=():void=>{
     this.numberSelected=[];
     this.betAmount=0;
+  }
+  updateBetAmount(bet:number){
+    this.betAmount=bet;
+    console.log(this.betAmount);
   }
 }

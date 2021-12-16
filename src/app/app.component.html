@@ -2,8 +2,8 @@
   <app-header></app-header>
   <div class="row d-flex w-75 mx-auto justify-content-center">
   <div class="col-4 mx-1">
-      <app-bet-money-list (betAmountToApp)="updateBetAmount($event)" (betIsSelected)="updateBetSelection($event)"></app-bet-money-list>
-      <app-number-selection (noSelected)="updateNoSelected($event)" (allSelected)="updateIsAllSelected($event)" [isbetSelected]="betSelected"></app-number-selection>
+      <app-bet-money-list [betAmountToApp]="betAmount" (betAmountToAppChange)="updateBetAmount($event)"></app-bet-money-list>
+      <app-number-selection [(noSelected)]="numberSelected"></app-number-selection>
   </div>
   <div class="container-fluid section-numberSelected col-4 mx-1">
     <div class="summary-section">
@@ -13,7 +13,7 @@
         <p>Total: $ {{betAmount}}.00</p>
   </div>
   </div>
-  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="cleanUp()" [disabled]="!isAllSelected||!betSelected">CLEAR</button>
-  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="checkout()" [disabled]="!isAllSelected||!betSelected">CASH</button>
+  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="cleanUp()" [disabled]="(!(betAmount>0)||!(numberSelected.length==5))">CLEAR</button>
+  <button class="btn btn-secondary d-flex mx-auto my-2 justify-content-center" type="button" (click)="checkout()" [disabled]="(!(betAmount>0)||!(numberSelected.length==5))">CASH</button>
 
 </div>

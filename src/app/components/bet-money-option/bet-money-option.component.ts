@@ -13,21 +13,19 @@ export class BetMoneyOptionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() betOption: number = 0;
   static totalAmount: number = 0;
-  static isSelected: boolean = false;
-  @Output() totalBet = new EventEmitter<number>();
-  @Output() betIsSelected = new EventEmitter<boolean>();
 
-  addBet = (event: Event): void => {
+  @Input() betOption: number = 0;
+  @Input() set betAmount(amount:number){
+    BetMoneyOptionComponent.totalAmount=amount;
+  }
+  @Output() betAmountChange = new EventEmitter<number>();
+
+  updateBet = (event: Event): void => {
     const targetValue = parseInt((event.target as HTMLButtonElement).value);
     BetMoneyOptionComponent.totalAmount+=targetValue;
     window.alert(`${targetValue} is added to bet, total bet is: $ ${BetMoneyOptionComponent.totalAmount}`)
-    this.totalBet.emit(BetMoneyOptionComponent.totalAmount);
-    if(BetMoneyOptionComponent.totalAmount>0) BetMoneyOptionComponent.isSelected=true;
-    else BetMoneyOptionComponent.isSelected=false;
-    this.betIsSelected.emit(BetMoneyOptionComponent.isSelected);
-    console.log(BetMoneyOptionComponent.totalAmount);
+    this.betAmountChange.emit(BetMoneyOptionComponent.totalAmount);
   }
 
 }

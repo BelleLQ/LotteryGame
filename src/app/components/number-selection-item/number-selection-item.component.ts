@@ -1,28 +1,20 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-number-selection-item',
   templateUrl: './number-selection-item.component.html',
   styleUrls: ['./number-selection-item.component.css']
 })
-export class NumberSelectionItemComponent implements OnChanges {
+export class NumberSelectionItemComponent implements OnInit {
   static isSelected:number[]=[];
   @Input() numberItem:number=0;
-  @Input() clearIsHit:boolean=false;
-  @Output() numbersSelected= new EventEmitter<number[]>();
-  @Output() allNumberSelected = new EventEmitter<boolean>();
-  set isSelected(nums: number[]) {
-    this.isSelected = nums;
+  @Input() set numbersSelected(nos:number[]) {
+    NumberSelectionItemComponent.isSelected=nos;
   }
-  constructor() { }
-  OnInit(){}
+  @Output() numbersSelectedChange= new EventEmitter<number[]>();
 
-  ngOnChanges(changes: SimpleChanges) {
-    if(this.checkClear()){
-      NumberSelectionItemComponent.isSelected=[];
-      this.numbersSelected.emit(NumberSelectionItemComponent.isSelected);
-    }
-  }
+  constructor() { }
+  ngOnInit(){}
   numberSelectedToggle =(event:Event):void=>{
     const targetValue=parseInt((event.target as HTMLButtonElement).value);
       if(NumberSelectionItemComponent.isSelected.length<5 && !NumberSelectionItemComponent.isSelected.includes(targetValue)) {
@@ -38,14 +30,7 @@ export class NumberSelectionItemComponent implements OnChanges {
         window.alert(`5 numbers are chosen!`);
       }
 
-      this.numbersSelected.emit(NumberSelectionItemComponent.isSelected);
-      if(NumberSelectionItemComponent.isSelected.length==5){
-        this.allNumberSelected.emit(true);
-      }
-      else this.allNumberSelected.emit(false);
-    console.log(NumberSelectionItemComponent.isSelected);
+      this.numbersSelectedChange.emit(NumberSelectionItemComponent.isSelected);
   }
-  checkClear():boolean{
-    return this.clearIsHit;
-  }
+
 }
